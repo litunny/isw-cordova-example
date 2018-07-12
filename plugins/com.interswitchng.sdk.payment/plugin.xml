@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.interswitchng.sdk.payment" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>PaymentPlugin</name>
+    <description>Cordova Payment Plugin on Interswitch Platform</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,payment</keywords>
+    <repo></repo>
+    <issue></issue>
+
+    <js-module name="PaymentPlugin" src="www/PaymentPlugin.js">
+        <clobbers target="PaymentPlugin" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="PaymentPlugin" >
+                <param name="android-package" value="PaymentPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/PaymentPlugin.java" target-dir="src/" />
+        <source-file src="src/android/PluginUtils.java" target-dir="src/" />
+        <source-file src="src/android/PayWithOutUI.java" target-dir="src/" />
+        <source-file src="src/android/PayWithUI.java" target-dir="src/" />
+		<source-file src="src/android/CacheUtils.java" target-dir="src/" />
+		<source-file src="src/android/SerializablePaymentCallback.java" target-dir="src/" />
+		
+        <framework custom="true" src="src/android/build.gradle" type="gradleReference" />
+    </platform>
+
+
+    <platform name='ios'>
+        <config-file target='config.xml' parent='/*'>
+            <feature name='PaymentPlugin'>
+                <param name='ios-package' value='PaymentPlugin'/>
+            </feature>
+        </config-file>
+        <source-file src='src/ios/PaymentPlugin.swift'/>
+        <source-file src='src/ios/PayWithoutUI.swift'/>
+        <source-file src='src/ios/PayWithUI.swift'/>
+        <source-file src='src/ios/Utils.swift'/>
+
+        <framework src="src/ios/Frameworks/PaymentSDK.framework" custom="true"/>
+        <framework src="src/ios/Frameworks/Alamofire.framework" custom="true"/>
+        <framework src="src/ios/Frameworks/CryptoSwift.framework" custom="true"/>
+        <framework src="src/ios/Frameworks/SwiftyJSON.framework" custom="true"/>
+        <preference name="UseSwiftLanguageVersion" value="4"/>
+        <preference name="UseSwiftLanguageVersion" value="4" default="4"/>
+        <preference name="USESWIFTLANGUAGEVERSION" value="4" default="4"/>
+        
+        <dependency id="cordova-plugin-add-swift-support" url="https://github.com/akofman/cordova-plugin-add-swift-support"/>
+    </platform>
+
+    <dependency id="cordova-plugin-add-swift-support" url="https://github.com/akofman/cordova-plugin-add-swift-support"/>
+</plugin>
